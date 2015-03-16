@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Namespace="HIMSDataContext.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="HIMSDataContextTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="HIMSDataContext" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" >
+        <EntityContainer Name="HIMSDataContextContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OM_OrdersSet" EntityType="HIMSDataContext.OM_Orders" />
+          <EntitySet Name="OM_StateSet" EntityType="HIMSDataContext.OM_State" />
+          <AssociationSet Name="OM_OrdersOM_State" Association="HIMSDataContext.OM_OrdersOM_State">
+            <End Role="OM_Orders" EntitySet="OM_OrdersSet" />
+            <End Role="OM_State" EntitySet="OM_StateSet" />
+          </AssociationSet>
+          <EntitySet Name="AM_AccountsSet" EntityType="HIMSDataContext.AM_Accounts" />
+          <EntitySet Name="AM_RoleSet" EntityType="HIMSDataContext.AM_Role" />
+          <AssociationSet Name="AM_RoleAM_Accounts" Association="HIMSDataContext.AM_RoleAM_Accounts">
+            <End Role="AM_Role" EntitySet="AM_RoleSet" />
+            <End Role="AM_Accounts" EntitySet="AM_AccountsSet" />
+          </AssociationSet>
+          <AssociationSet Name="AM_AccountsOM_Orders" Association="HIMSDataContext.AM_AccountsOM_Orders">
+            <End Role="AM_Accounts" EntitySet="AM_AccountsSet" />
+            <End Role="OM_Orders" EntitySet="OM_OrdersSet" />
+          </AssociationSet>
+          <EntitySet Name="RM_RoomsSet" EntityType="HIMSDataContext.RM_Rooms" />
+          <EntitySet Name="RM_StateSet" EntityType="HIMSDataContext.RM_State" />
+          <AssociationSet Name="RM_StateRM_Rooms" Association="HIMSDataContext.RM_StateRM_Rooms">
+            <End Role="RM_State" EntitySet="RM_StateSet" />
+            <End Role="RM_Rooms" EntitySet="RM_RoomsSet" />
+          </AssociationSet>
+          <EntitySet Name="RS_Order_RoomsSet" EntityType="HIMSDataContext.RS_Order_Rooms" />
+          <AssociationSet Name="OM_OrdersRS_Order_Rooms" Association="HIMSDataContext.OM_OrdersRS_Order_Rooms">
+            <End Role="OM_Orders" EntitySet="OM_OrdersSet" />
+            <End Role="RS_Order_Rooms" EntitySet="RS_Order_RoomsSet" />
+          </AssociationSet>
+          <AssociationSet Name="RM_RoomsRS_Order_Rooms" Association="HIMSDataContext.RM_RoomsRS_Order_Rooms">
+            <End Role="RM_Rooms" EntitySet="RM_RoomsSet" />
+            <End Role="RS_Order_Rooms" EntitySet="RS_Order_RoomsSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="OM_Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SID" Type="Int32" Nullable="false" />
+          <Property Name="AccountId" Type="Int64" Nullable="false" />
+          <Property Name="DateFrom" Type="DateTime" Nullable="false" />
+          <Property Name="DateTo" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="OM_State" Relationship="HIMSDataContext.OM_OrdersOM_State" FromRole="OM_Orders" ToRole="OM_State" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="AM_Accounts" Relationship="HIMSDataContext.AM_AccountsOM_Orders" FromRole="OM_Orders" ToRole="AM_Accounts" />
+          <NavigationProperty Name="RS_Order_Rooms" Relationship="HIMSDataContext.OM_OrdersRS_Order_Rooms" FromRole="OM_Orders" ToRole="RS_Order_Rooms" />
+        </EntityType>
+        <EntityType Name="OM_State">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="OM_Orders" Relationship="HIMSDataContext.OM_OrdersOM_State" FromRole="OM_State" ToRole="OM_Orders" />
+        </EntityType>
+        <Association Name="OM_OrdersOM_State">
+          <End Type="HIMSDataContext.OM_Orders" Role="OM_Orders" Multiplicity="*" />
+          <End Type="HIMSDataContext.OM_State" Role="OM_State" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="OM_State">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="OM_Orders">
+              <PropertyRef Name="SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AM_Accounts">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" />
+          <Property Name="Mobile" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="JoinTime" Type="DateTime" Nullable="false" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" />
+          <Property Name="RoleId" Type="String" Nullable="false" />
+          <NavigationProperty Name="AM_Role" Relationship="HIMSDataContext.AM_RoleAM_Accounts" FromRole="AM_Accounts" ToRole="AM_Role" />
+          <NavigationProperty Name="OM_Orders" Relationship="HIMSDataContext.AM_AccountsOM_Orders" FromRole="AM_Accounts" ToRole="OM_Orders" />
+        </EntityType>
+        <EntityType Name="AM_Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="AM_Accounts" Relationship="HIMSDataContext.AM_RoleAM_Accounts" FromRole="AM_Role" ToRole="AM_Accounts" />
+        </EntityType>
+        <Association Name="AM_RoleAM_Accounts">
+          <End Type="HIMSDataContext.AM_Role" Role="AM_Role" Multiplicity="1" />
+          <End Type="HIMSDataContext.AM_Accounts" Role="AM_Accounts" Multiplicity="*" />
+        </Association>
+        <Association Name="AM_AccountsOM_Orders">
+          <End Type="HIMSDataContext.AM_Accounts" Role="AM_Accounts" Multiplicity="1" />
+          <End Type="HIMSDataContext.OM_Orders" Role="OM_Orders" Multiplicity="*" />
+        </Association>
+        <EntityType Name="RM_Rooms">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Num" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Remark" Type="String" Nullable="false" />
+          <Property Name="UpdateTime" Type="String" Nullable="false" />
+          <Property Name="Operator" Type="String" Nullable="false" />
+          <Property Name="SID" Type="String" Nullable="false" />
+          <NavigationProperty Name="RM_State" Relationship="HIMSDataContext.RM_StateRM_Rooms" FromRole="RM_Rooms" ToRole="RM_State" />
+          <NavigationProperty Name="RS_Order_Rooms" Relationship="HIMSDataContext.RM_RoomsRS_Order_Rooms" FromRole="RM_Rooms" ToRole="RS_Order_Rooms" />
+        </EntityType>
+        <EntityType Name="RM_State">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RM_Rooms" Relationship="HIMSDataContext.RM_StateRM_Rooms" FromRole="RM_State" ToRole="RM_Rooms" />
+        </EntityType>
+        <Association Name="RM_StateRM_Rooms">
+          <End Type="HIMSDataContext.RM_State" Role="RM_State" Multiplicity="1" />
+          <End Type="HIMSDataContext.RM_Rooms" Role="RM_Rooms" Multiplicity="*" />
+        </Association>
+        <EntityType Name="RS_Order_Rooms">
+          <Key>
+            <PropertyRef Name="RS_ID" />
+          </Key>
+          <Property Name="RS_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int64" Nullable="false" />
+          <Property Name="RoomId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="OM_Orders" Relationship="HIMSDataContext.OM_OrdersRS_Order_Rooms" FromRole="RS_Order_Rooms" ToRole="OM_Orders" />
+          <NavigationProperty Name="RM_Rooms" Relationship="HIMSDataContext.RM_RoomsRS_Order_Rooms" FromRole="RS_Order_Rooms" ToRole="RM_Rooms" />
+        </EntityType>
+        <Association Name="OM_OrdersRS_Order_Rooms">
+          <End Type="HIMSDataContext.OM_Orders" Role="OM_Orders" Multiplicity="1" />
+          <End Type="HIMSDataContext.RS_Order_Rooms" Role="RS_Order_Rooms" Multiplicity="*" />
+        </Association>
+        <Association Name="RM_RoomsRS_Order_Rooms">
+          <End Type="HIMSDataContext.RM_Rooms" Role="RM_Rooms" Multiplicity="1" />
+          <End Type="HIMSDataContext.RS_Order_Rooms" Role="RS_Order_Rooms" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="HIMSDataContext" />
+        <Alias Key="Target" Value="HIMSDataContext.Store" />
+        <EntityContainerMapping CdmEntityContainer="HIMSDataContextContainer" StorageEntityContainer="HIMSDataContextTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,107 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="HIMS.Admin.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="zh">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - 酒店客房信息管理系统 - 后台面板</title>
+    <%--<link href="~/Content/Site.css" rel="stylesheet" />--%>
+    <link href="~/Content/css/templatemo_main.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap.datepicker/css/datepicker.css" rel="stylesheet" />
+
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:PlaceHolder runat="server">
+        <script src="<%: ResolveUrl("~/Scripts/jquery-1.8.2.min.js") %>"></script>
+        <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
+        <script src="<%: ResolveUrl("~/Scripts/js/bootstrap.min.js") %>"></script>
+        <script src="<%: ResolveUrl("~/Scripts/js/Chart.min.js") %>"></script>
+        <script src="<%: ResolveUrl("~/Scripts/bootstrap.datepicker/js/bootstrap-datepicker.js") %>"></script>
+
+        <script src="<%: ResolveUrl("~/Scripts/BaseJS.js") %>"></script>
+
+    </asp:PlaceHolder>
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--<asp:ScriptReference Name="jquery" />--%>
+                <asp:ScriptReference Name="jquery.ui.combined" />
+            </Scripts>
+        </asp:ScriptManager>
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="navbar-header">
+                <div class="logo">
+                    <h1>酒店客房信息管理系统</h1>
+                </div>
+                <div class="logo">
+                    <h5>你好,XXX</h5>
+                </div>
+            </div>
+        </div>
+        <div class="template-page-wrapper">
+            <div class="navbar-collapse collapse templatemo-sidebar">
+                <ul class="templatemo-sidebar-menu">
+                    <li class="active sub open">
+                        <a href="#">
+                            <i class="fa fa-home"></i>
+                            <b>订单管理</b>
+                            <div class="pull-right">
+                                <span class="caret"></span>
+                            </div>
+                        </a>
+                        <ul class="templatemo-submenu">
+                            <li><a href="#"><b>未完成订单</b></a></li>
+                            <li><a href="#"><b>已完成订单</b></a></li>
+                            <li><a href="#"><b>已取消订单</b></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-database"></i>
+                            <b>房间信息管理</b>
+                        </a>
+                    </li>
+                    <li class="sub">
+                        <a href="#">
+                            <i class="fa fa-home"></i>
+                            <b>账号管理</b>
+                            <div class="pull-right">
+                                <span class="caret"></span>
+                            </div>
+                        </a>
+                        <ul class="templatemo-submenu">
+                            <li><a href="#"><b>员工管理</b></a></li>
+                            <li><a href="#"><b>会员管理</b></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="modal" data-target="#confirmModal">
+                            <i class="fa fa-sign-out"></i>
+                            <b>退出</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.navbar-collapse -->
+
+            <div class="templatemo-content-wrapper">
+                <div class="templatemo-content">
+                    <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                    <section class="content-wrapper main-content clear-fix">
+                        <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                    </section>
+                </div>
+            </div>
+            <footer class="templatemo-footer">
+                <div class="templatemo-copyright">
+                    <p>Copyright &copy; 2015 酒店客房信息管理系统</p>
+                </div>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>
