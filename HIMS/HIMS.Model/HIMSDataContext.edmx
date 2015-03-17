@@ -63,7 +63,7 @@
           <Key>
             <PropertyRef Name="SID" />
           </Key>
-          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="OM_Orders" Relationship="HIMSDataContext.OM_OrdersOM_State" FromRole="OM_State" ToRole="OM_Orders" />
         </EntityType>
         <Association Name="OM_OrdersOM_State">
@@ -153,7 +153,7 @@
         </Association>
         <Association Name="RM_RoomsRS_Order_Rooms">
           <End Type="HIMSDataContext.RM_Rooms" Role="RM_Rooms" Multiplicity="1" />
-          <End Type="HIMSDataContext.RS_Order_Rooms" Role="RS_Order_Rooms" Multiplicity="1" />
+          <End Type="HIMSDataContext.RS_Order_Rooms" Role="RS_Order_Rooms" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>

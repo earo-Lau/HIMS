@@ -1,3 +1,3 @@
 ﻿$(function () {
-    $(".input-group.date").datepicker({});
+    $(".datepicker").datepicker();
 });

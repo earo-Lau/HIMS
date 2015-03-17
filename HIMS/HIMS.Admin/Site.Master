@@ -7,8 +7,9 @@
     <meta charset="utf-8" />
     <title><%: Page.Title %> - 酒店客房信息管理系统 - 后台面板</title>
     <%--<link href="~/Content/Site.css" rel="stylesheet" />--%>
+    
     <link href="~/Content/css/templatemo_main.css" rel="stylesheet" />
-    <link href="~/Scripts/bootstrap.datepicker/css/datepicker.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap.datepicker/css/datepicker3.css" rel="stylesheet" />
 
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <asp:PlaceHolder runat="server">
@@ -16,10 +17,11 @@
         <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
         <script src="<%: ResolveUrl("~/Scripts/js/bootstrap.min.js") %>"></script>
         <script src="<%: ResolveUrl("~/Scripts/js/Chart.min.js") %>"></script>
+
         <script src="<%: ResolveUrl("~/Scripts/bootstrap.datepicker/js/bootstrap-datepicker.js") %>"></script>
+        <script src="<%: ResolveUrl("~/Scripts/bootstrap.datepicker/js/bootstrap-datepicker.zh-CN.js") %>"></script>
 
         <script src="<%: ResolveUrl("~/Scripts/BaseJS.js") %>"></script>
-
     </asp:PlaceHolder>
     <meta name="viewport" content="width=device-width" />
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
@@ -28,8 +30,9 @@
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-                <%--<asp:ScriptReference Name="jquery" />--%>
-                <asp:ScriptReference Name="jquery.ui.combined" />
+                <%--<asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />--%>
+                
             </Scripts>
         </asp:ScriptManager>
         <div class="navbar navbar-inverse" role="navigation">
