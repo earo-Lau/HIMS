@@ -11,7 +11,7 @@ namespace HIMS.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            var dao = DAO.DAOContainer.Singleton;
         }
     }
 }

@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Namespace="HIMSDataContext.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="HIMSDataContextTargetContainer" >
+      <Schema Namespace="HIMSDataContext.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HIMSDataContextTargetContainer">
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="HIMSDataContext" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" >
-        <EntityContainer Name="HIMSDataContextContainer" annotation:LazyLoadingEnabled="true">
+      <Schema Namespace="HIMSDataContext" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="HIMSDataContextContainer" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
           <EntitySet Name="OM_OrdersSet" EntityType="HIMSDataContext.OM_Orders" />
           <EntitySet Name="OM_StateSet" EntityType="HIMSDataContext.OM_State" />
           <AssociationSet Name="OM_OrdersOM_State" Association="HIMSDataContext.OM_OrdersOM_State">
@@ -49,7 +49,7 @@
           <Key>
             <PropertyRef Name="OrderId" />
           </Key>
-          <Property Name="OrderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="SID" Type="Int32" Nullable="false" />
           <Property Name="AccountId" Type="Int64" Nullable="false" />
           <Property Name="DateFrom" Type="DateTime" Nullable="false" />
@@ -63,7 +63,7 @@
           <Key>
             <PropertyRef Name="SID" />
           </Key>
-          <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <NavigationProperty Name="OM_Orders" Relationship="HIMSDataContext.OM_OrdersOM_State" FromRole="OM_State" ToRole="OM_Orders" />
         </EntityType>
         <Association Name="OM_OrdersOM_State">
@@ -82,7 +82,7 @@
           <Key>
             <PropertyRef Name="AccountId" />
           </Key>
-          <Property Name="AccountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Gender" Type="String" Nullable="false" />
           <Property Name="Mobile" Type="String" Nullable="false" />
@@ -98,7 +98,7 @@
           <Key>
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="AM_Accounts" Relationship="HIMSDataContext.AM_RoleAM_Accounts" FromRole="AM_Role" ToRole="AM_Accounts" />
         </EntityType>
@@ -114,7 +114,7 @@
           <Key>
             <PropertyRef Name="RoomId" />
           </Key>
-          <Property Name="RoomId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Num" Type="String" Nullable="false" />
           <Property Name="Type" Type="String" Nullable="false" />
           <Property Name="Remark" Type="String" Nullable="false" />
@@ -128,7 +128,7 @@
           <Key>
             <PropertyRef Name="SID" />
           </Key>
-          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Value" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RM_Rooms" Relationship="HIMSDataContext.RM_StateRM_Rooms" FromRole="RM_State" ToRole="RM_Rooms" />
@@ -141,7 +141,7 @@
           <Key>
             <PropertyRef Name="RS_ID" />
           </Key>
-          <Property Name="RS_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RS_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="OrderId" Type="Int64" Nullable="false" />
           <Property Name="RoomId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="OM_Orders" Relationship="HIMSDataContext.OM_OrdersRS_Order_Rooms" FromRole="RS_Order_Rooms" ToRole="OM_Orders" />
@@ -159,7 +159,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <Alias Key="Model" Value="HIMSDataContext" />
         <Alias Key="Target" Value="HIMSDataContext.Store" />
         <EntityContainerMapping CdmEntityContainer="HIMSDataContextContainer" StorageEntityContainer="HIMSDataContextTargetContainer">
@@ -168,18 +168,18 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <edmx:Designer>
     <edmx:Connection>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
-      </DesignerInfoPropertySet>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
     </edmx:Connection>
     <edmx:Options>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
-      </DesignerInfoPropertySet>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="False" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </edmx:DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>

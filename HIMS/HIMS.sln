@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIMS", "HIMS\HIMS.csproj", "{349F582D-96A5-4425-875E-182AAB4132A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIMS.Admin", "HIMS.Admin\HIMS.Admin.csproj", "{1331846F-7472-4841-92B9-77DA7FBF4B98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIMS.Model", "HIMS.Model\HIMS.Model.csproj", "{85878AFC-D071-44BE-A637-1A84EC2F1C8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIMS.DAO", "HIMS.DAO\HIMS.DAO.csproj", "{1513FB7D-E832-43D5-B47B-2917F4748D57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{85878AFC-D071-44BE-A637-1A84EC2F1C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85878AFC-D071-44BE-A637-1A84EC2F1C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85878AFC-D071-44BE-A637-1A84EC2F1C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1513FB7D-E832-43D5-B47B-2917F4748D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1513FB7D-E832-43D5-B47B-2917F4748D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1513FB7D-E832-43D5-B47B-2917F4748D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1513FB7D-E832-43D5-B47B-2917F4748D57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

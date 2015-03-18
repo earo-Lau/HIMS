@@ -361,6 +361,10 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HIMS.DAO\HIMS.DAO.csproj">
+      <Project>{1513fb7d-e832-43d5-b47b-2917f4748d57}</Project>
+      <Name>HIMS.DAO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HIMS.Model\HIMS.Model.csproj">
       <Project>{85878afc-d071-44be-a637-1a84ec2f1c8d}</Project>
       <Name>HIMS.Model</Name>
