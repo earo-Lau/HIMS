@@ -30,13 +30,13 @@
 
         <div class="form-group">
             <label for="<%: txtRoomType.ClientID %>" class="col-sm-1 control-label">房间类型</label>
-            <div class="col-sm-3">
-                    <asp:TextBox ID="txtRoomType" runat="server" CssClass="form-control"></asp:TextBox>
+            <div class="col-sm-2">
+                <asp:TextBox ID="txtRoomType" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
 
             <label for="<%: txtDateFrom.ClientID %>" class="col-sm-1 control-label">入住日期</label>
             <div class="col-sm-2">
-                <div class="input-group date datepicker">
+                <div class="input-group date datepicker col-sm-12">
                     <asp:TextBox ID="txtDateFrom" runat="server" CssClass="form-control"></asp:TextBox>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
@@ -44,7 +44,7 @@
 
             <label for="<%: txtDateTo.ClientID %>" class="col-sm-1 control-label">离开日期</label>
             <div class="col-sm-2">
-                <div class="input-group date datepicker">
+                <div class="input-group date datepicker col-sm-12">
                     <asp:TextBox ID="txtDateTo" runat="server" CssClass="form-control"></asp:TextBox>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>

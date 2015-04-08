@@ -49,7 +49,7 @@
             <div class="navbar-collapse collapse templatemo-sidebar">
                 <ul class="templatemo-sidebar-menu">
                     <li class="active sub open">
-                        <a href="#">
+                        <a href="javascript:;">
                             <i class="fa fa-home"></i>
                             <b>订单管理</b>
                             <div class="pull-right">
@@ -57,19 +57,19 @@
                             </div>
                         </a>
                         <ul class="templatemo-submenu">
-                            <li><a href="#"><b>未完成订单</b></a></li>
-                            <li><a href="#"><b>已完成订单</b></a></li>
-                            <li><a href="#"><b>已取消订单</b></a></li>
+                            <li><a href="~/Orders/Index.aspx"><b>未完成订单</b></a></li>
+                            <li><a href="~/Orders/Index.aspx?s=Finish"><b>已完成订单</b></a></li>
+                            <li><a href="~/Orders/Index.aspx?s=Cancel"><b>已取消订单</b></a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;">
+                        <a href="~/Rooms/Index.aspx">
                             <i class="fa fa-database"></i>
                             <b>房间信息管理</b>
                         </a>
                     </li>
                     <li class="sub">
-                        <a href="#">
+                        <a href="javascript:;">
                             <i class="fa fa-home"></i>
                             <b>账号管理</b>
                             <div class="pull-right">
@@ -77,8 +77,8 @@
                             </div>
                         </a>
                         <ul class="templatemo-submenu">
-                            <li><a href="#"><b>员工管理</b></a></li>
-                            <li><a href="#"><b>会员管理</b></a></li>
+                            <li><a href="~/Accounts/Employees.aspx"><b>员工管理</b></a></li>
+                            <li><a href="~/Accounts/Members.aspx"><b>会员管理</b></a></li>
                         </ul>
                     </li>
                     <li>
