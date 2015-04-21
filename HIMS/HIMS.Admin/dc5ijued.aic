@@ -57,24 +57,17 @@
                             </div>
                         </a>
                         <ul class="templatemo-submenu">
-                            <li><a href="/Orders/Add.aspx"><b>添加订单</b></a></li>
-                            <li><a href="/Orders/Index.aspx"><b>未完成订单</b></a></li>
-                            <li><a href="/Orders/Index.aspx?s=Finish"><b>已完成订单</b></a></li>
-                            <li><a href="/Orders/Index.aspx?s=Cancel"><b>已取消订单</b></a></li>
+                            <li><a href="~/Orders/Index.aspx"><b>未完成订单</b></a></li>
+                            <li><a href="~/Orders/Index.aspx"><b>未完成订单</b></a></li>
+                            <li><a href="~/Orders/Index.aspx?s=Finish"><b>已完成订单</b></a></li>
+                            <li><a href="~/Orders/Index.aspx?s=Cancel"><b>已取消订单</b></a></li>
                         </ul>
                     </li>
-                    <li class="sub open">
-                        <a href="/Rooms/Index.aspx">
+                    <li>
+                        <a href="~/Rooms/Index.aspx">
                             <i class="fa fa-database"></i>
                             <b>房间信息管理</b>
-                            <div class="pull-right">
-                                <span class="caret"></span>
-                            </div>
                         </a>
-                        <ul class="templatemo-submenu">
-                            <li><a href="/Rooms/Index.aspx">房间管理</a></li>
-                            <li><a href="/Rooms/State.aspx">房间状态管理</a></li>
-                        </ul>
                     </li>
                     <li class="sub">
                         <a href="javascript:;">

@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HIMS.DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AM_AccountsSet">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="JoinTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AM_Role_RoleId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AM_RoleSet">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OM_OrdersSet">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SID" Type="int" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" Nullable="false" />
+          <Property Name="DateFrom" Type="datetime" Nullable="false" />
+          <Property Name="DateTo" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="AM_Accounts_AccountId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OM_StateSet">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RM_RoomsSet">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Num" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Remark" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UpdateTime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Operator" Type="nvarchar(max)" />
+          <Property Name="RM_State_SID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RM_StateSet">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RS_Order_RoomsSet">
+          <Key>
+            <PropertyRef Name="RS_ID" />
+          </Key>
+          <Property Name="RS_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="bigint" Nullable="false" />
+          <Property Name="RoomId" Type="bigint" Nullable="false" />
+          <Property Name="OM_Orders_OrderId" Type="bigint" Nullable="false" />
+          <Property Name="RM_Rooms_RoomId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AM_AccountsOM_Orders">
+          <End Role="AM_AccountsSet" Type="Self.AM_AccountsSet" Multiplicity="1" />
+          <End Role="OM_OrdersSet" Type="Self.OM_OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AM_AccountsSet">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="OM_OrdersSet">
+              <PropertyRef Name="AM_Accounts_AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AM_RoleAM_Accounts">
+          <End Role="AM_RoleSet" Type="Self.AM_RoleSet" Multiplicity="1" />
+          <End Role="AM_AccountsSet" Type="Self.AM_AccountsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AM_RoleSet">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="AM_AccountsSet">
+              <PropertyRef Name="AM_Role_RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OM_OrdersOM_State">
+          <End Role="OM_StateSet" Type="Self.OM_StateSet" Multiplicity="1" />
+          <End Role="OM_OrdersSet" Type="Self.OM_OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OM_StateSet">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="OM_OrdersSet">
+              <PropertyRef Name="SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OM_OrdersRS_Order_Rooms">
+          <End Role="OM_OrdersSet" Type="Self.OM_OrdersSet" Multiplicity="1" />
+          <End Role="RS_Order_RoomsSet" Type="Self.RS_Order_RoomsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OM_OrdersSet">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="RS_Order_RoomsSet">
+              <PropertyRef Name="OM_Orders_OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RM_RoomsRS_Order_Rooms">
+          <End Role="RM_RoomsSet" Type="Self.RM_RoomsSet" Multiplicity="1" />
+          <End Role="RS_Order_RoomsSet" Type="Self.RS_Order_RoomsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RM_RoomsSet">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="RS_Order_RoomsSet">
+              <PropertyRef Name="RM_Rooms_RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RM_StateRM_Rooms">
+          <End Role="RM_StateSet" Type="Self.RM_StateSet" Multiplicity="1" />
+          <End Role="RM_RoomsSet" Type="Self.RM_RoomsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RM_StateSet">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="RM_RoomsSet">
+              <PropertyRef Name="RM_State_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HIMSDataModelStoreContainer">
+          <EntitySet Name="AM_AccountsSet" EntityType="Self.AM_AccountsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AM_RoleSet" EntityType="Self.AM_RoleSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OM_OrdersSet" EntityType="Self.OM_OrdersSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OM_StateSet" EntityType="Self.OM_StateSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RM_RoomsSet" EntityType="Self.RM_RoomsSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RM_StateSet" EntityType="Self.RM_StateSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RS_Order_RoomsSet" EntityType="Self.RS_Order_RoomsSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AM_AccountsOM_Orders" Association="Self.FK_AM_AccountsOM_Orders">
+            <End Role="AM_AccountsSet" EntitySet="AM_AccountsSet" />
+            <End Role="OM_OrdersSet" EntitySet="OM_OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AM_RoleAM_Accounts" Association="Self.FK_AM_RoleAM_Accounts">
+            <End Role="AM_RoleSet" EntitySet="AM_RoleSet" />
+            <End Role="AM_AccountsSet" EntitySet="AM_AccountsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OM_OrdersOM_State" Association="Self.FK_OM_OrdersOM_State">
+            <End Role="OM_StateSet" EntitySet="OM_StateSet" />
+            <End Role="OM_OrdersSet" EntitySet="OM_OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OM_OrdersRS_Order_Rooms" Association="Self.FK_OM_OrdersRS_Order_Rooms">
+            <End Role="OM_OrdersSet" EntitySet="OM_OrdersSet" />
+            <End Role="RS_Order_RoomsSet" EntitySet="RS_Order_RoomsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RM_RoomsRS_Order_Rooms" Association="Self.FK_RM_RoomsRS_Order_Rooms">
+            <End Role="RM_RoomsSet" EntitySet="RM_RoomsSet" />
+            <End Role="RS_Order_RoomsSet" EntitySet="RS_Order_RoomsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RM_StateRM_Rooms" Association="Self.FK_RM_StateRM_Rooms">
+            <End Role="RM_StateSet" EntitySet="RM_StateSet" />
+            <End Role="RM_RoomsSet" EntitySet="RM_RoomsSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HIMS.DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AM_AccountsSet">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="JoinTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RoleId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AM_Role_RoleId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="OM_OrdersSet" Relationship="Self.FK_AM_AccountsOM_Orders" FromRole="AM_AccountsSet" ToRole="OM_OrdersSet" />
+          <NavigationProperty Name="AM_RoleSet" Relationship="Self.FK_AM_RoleAM_Accounts" FromRole="AM_AccountsSet" ToRole="AM_RoleSet" />
+        </EntityType>
+        <EntityType Name="AM_RoleSet">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AM_AccountsSet" Relationship="Self.FK_AM_RoleAM_Accounts" FromRole="AM_RoleSet" ToRole="AM_AccountsSet" />
+        </EntityType>
+        <EntityType Name="OM_OrdersSet">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SID" Type="Int32" Nullable="false" />
+          <Property Name="AccountId" Type="Int64" Nullable="false" />
+          <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AM_Accounts_AccountId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="AM_AccountsSet" Relationship="Self.FK_AM_AccountsOM_Orders" FromRole="OM_OrdersSet" ToRole="AM_AccountsSet" />
+          <NavigationProperty Name="OM_StateSet" Relationship="Self.FK_OM_OrdersOM_State" FromRole="OM_OrdersSet" ToRole="OM_StateSet" />
+          <NavigationProperty Name="RS_Order_RoomsSet" Relationship="Self.FK_OM_OrdersRS_Order_Rooms" FromRole="OM_OrdersSet" ToRole="RS_Order_RoomsSet" />
+        </EntityType>
+        <EntityType Name="OM_StateSet">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="OM_OrdersSet" Relationship="Self.FK_OM_OrdersOM_State" FromRole="OM_StateSet" ToRole="OM_OrdersSet" />
+        </EntityType>
+        <EntityType Name="RM_RoomsSet">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Num" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UpdateTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Operator" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RM_State_SID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="RS_Order_RoomsSet" Relationship="Self.FK_RM_RoomsRS_Order_Rooms" FromRole="RM_RoomsSet" ToRole="RS_Order_RoomsSet" />
+          <NavigationProperty Name="RM_StateSet" Relationship="Self.FK_RM_StateRM_Rooms" FromRole="RM_RoomsSet" ToRole="RM_StateSet" />
+          <Property Name="Price" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RM_StateSet">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RM_RoomsSet" Relationship="Self.FK_RM_StateRM_Rooms" FromRole="RM_StateSet" ToRole="RM_RoomsSet" />
+        </EntityType>
+        <EntityType Name="RS_Order_RoomsSet">
+          <Key>
+            <PropertyRef Name="RS_ID" />
+          </Key>
+          <Property Name="RS_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int64" Nullable="false" />
+          <Property Name="RoomId" Type="Int64" Nullable="false" />
+          <Property Name="OM_Orders_OrderId" Type="Int64" Nullable="false" />
+          <Property Name="RM_Rooms_RoomId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="OM_OrdersSet" Relationship="Self.FK_OM_OrdersRS_Order_Rooms" FromRole="RS_Order_RoomsSet" ToRole="OM_OrdersSet" />
+          <NavigationProperty Name="RM_RoomsSet" Relationship="Self.FK_RM_RoomsRS_Order_Rooms" FromRole="RS_Order_RoomsSet" ToRole="RM_RoomsSet" />
+        </EntityType>
+        <Association Name="FK_AM_AccountsOM_Orders">
+          <End Role="AM_AccountsSet" Type="Self.AM_AccountsSet" Multiplicity="1" />
+          <End Role="OM_OrdersSet" Type="Self.OM_OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AM_AccountsSet">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="OM_OrdersSet">
+              <PropertyRef Name="AM_Accounts_AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AM_RoleAM_Accounts">
+          <End Role="AM_RoleSet" Type="Self.AM_RoleSet" Multiplicity="1" />
+          <End Role="AM_AccountsSet" Type="Self.AM_AccountsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AM_RoleSet">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="AM_AccountsSet">
+              <PropertyRef Name="AM_Role_RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OM_OrdersOM_State">
+          <End Role="OM_StateSet" Type="Self.OM_StateSet" Multiplicity="1" />
+          <End Role="OM_OrdersSet" Type="Self.OM_OrdersSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OM_StateSet">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="OM_OrdersSet">
+              <PropertyRef Name="SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OM_OrdersRS_Order_Rooms">
+          <End Role="OM_OrdersSet" Type="Self.OM_OrdersSet" Multiplicity="1" />
+          <End Role="RS_Order_RoomsSet" Type="Self.RS_Order_RoomsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OM_OrdersSet">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="RS_Order_RoomsSet">
+              <PropertyRef Name="OM_Orders_OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RM_RoomsRS_Order_Rooms">
+          <End Role="RM_RoomsSet" Type="Self.RM_RoomsSet" Multiplicity="1" />
+          <End Role="RS_Order_RoomsSet" Type="Self.RS_Order_RoomsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RM_RoomsSet">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="RS_Order_RoomsSet">
+              <PropertyRef Name="RM_Rooms_RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RM_StateRM_Rooms">
+          <End Role="RM_StateSet" Type="Self.RM_StateSet" Multiplicity="1" />
+          <End Role="RM_RoomsSet" Type="Self.RM_RoomsSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RM_StateSet">
+              <PropertyRef Name="SID" />
+            </Principal>
+            <Dependent Role="RM_RoomsSet">
+              <PropertyRef Name="RM_State_SID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="AM_AccountsSet" EntityType="Self.AM_AccountsSet" />
+          <EntitySet Name="AM_RoleSet" EntityType="Self.AM_RoleSet" />
+          <EntitySet Name="OM_OrdersSet" EntityType="Self.OM_OrdersSet" />
+          <EntitySet Name="OM_StateSet" EntityType="Self.OM_StateSet" />
+          <EntitySet Name="RM_RoomsSet" EntityType="Self.RM_RoomsSet" />
+          <EntitySet Name="RM_StateSet" EntityType="Self.RM_StateSet" />
+          <EntitySet Name="RS_Order_RoomsSet" EntityType="Self.RS_Order_RoomsSet" />
+          <AssociationSet Name="FK_AM_AccountsOM_Orders" Association="Self.FK_AM_AccountsOM_Orders">
+            <End Role="AM_AccountsSet" EntitySet="AM_AccountsSet" />
+            <End Role="OM_OrdersSet" EntitySet="OM_OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AM_RoleAM_Accounts" Association="Self.FK_AM_RoleAM_Accounts">
+            <End Role="AM_RoleSet" EntitySet="AM_RoleSet" />
+            <End Role="AM_AccountsSet" EntitySet="AM_AccountsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OM_OrdersOM_State" Association="Self.FK_OM_OrdersOM_State">
+            <End Role="OM_StateSet" EntitySet="OM_StateSet" />
+            <End Role="OM_OrdersSet" EntitySet="OM_OrdersSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OM_OrdersRS_Order_Rooms" Association="Self.FK_OM_OrdersRS_Order_Rooms">
+            <End Role="OM_OrdersSet" EntitySet="OM_OrdersSet" />
+            <End Role="RS_Order_RoomsSet" EntitySet="RS_Order_RoomsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RM_RoomsRS_Order_Rooms" Association="Self.FK_RM_RoomsRS_Order_Rooms">
+            <End Role="RM_RoomsSet" EntitySet="RM_RoomsSet" />
+            <End Role="RS_Order_RoomsSet" EntitySet="RS_Order_RoomsSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RM_StateRM_Rooms" Association="Self.FK_RM_StateRM_Rooms">
+            <End Role="RM_StateSet" EntitySet="RM_StateSet" />
+            <End Role="RM_RoomsSet" EntitySet="RM_RoomsSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HIMSDataModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AM_AccountsSet">
+            <EntityTypeMapping TypeName="HIMS.DataModel.AM_AccountsSet">
+              <MappingFragment StoreEntitySet="AM_AccountsSet">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="JoinTime" ColumnName="JoinTime" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="AM_Role_RoleId" ColumnName="AM_Role_RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AM_RoleSet">
+            <EntityTypeMapping TypeName="HIMS.DataModel.AM_RoleSet">
+              <MappingFragment StoreEntitySet="AM_RoleSet">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OM_OrdersSet">
+            <EntityTypeMapping TypeName="HIMS.DataModel.OM_OrdersSet">
+              <MappingFragment StoreEntitySet="OM_OrdersSet">
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="AM_Accounts_AccountId" ColumnName="AM_Accounts_AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OM_StateSet">
+            <EntityTypeMapping TypeName="HIMS.DataModel.OM_StateSet">
+              <MappingFragment StoreEntitySet="OM_StateSet">
+                <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RM_RoomsSet">
+            <EntityTypeMapping TypeName="HIMS.DataModel.RM_RoomsSet">
+              <MappingFragment StoreEntitySet="RM_RoomsSet">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="RM_State_SID" ColumnName="RM_State_SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RM_StateSet">
+            <EntityTypeMapping TypeName="HIMS.DataModel.RM_StateSet">
+              <MappingFragment StoreEntitySet="RM_StateSet">
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RS_Order_RoomsSet">
+            <EntityTypeMapping TypeName="HIMS.DataModel.RS_Order_RoomsSet">
+              <MappingFragment StoreEntitySet="RS_Order_RoomsSet">
+                <ScalarProperty Name="RS_ID" ColumnName="RS_ID" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="OM_Orders_OrderId" ColumnName="OM_Orders_OrderId" />
+                <ScalarProperty Name="RM_Rooms_RoomId" ColumnName="RM_Rooms_RoomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

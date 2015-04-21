@@ -30,8 +30,6 @@
             <label for="<%: ddlRoomState.ClientID %>" class="col-md-1 control-label">房间状态</label>
             <div class="col-md-3">
                 <asp:DropDownList ID="ddlRoomState" runat="server" CssClass="form-control">
-                    <asp:ListItem Text="所有" Value="-1">
-                    </asp:ListItem>
                     <asp:ListItem Text="正常营业" Value="1">
                     </asp:ListItem>
                     <asp:ListItem Text="装修" Value="2">
@@ -48,14 +46,13 @@
                     OnClick="btnAdd_Click" />
             </div>
             <div class="col-lg-2">
-                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-block btn-primary" Text="Search" OnClick="btnSearch_Click" />
+                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-block btn-primary" Text="Search" />
             </div>
         </div>
     </div>
 
     <div class="table-responsive">
-        <asp:ListView ID="lvRooms" runat="server" DataKeyNames="RoomId" OnItemEditing="lvRooms_ItemEditing" OnItemCanceling="lvRooms_ItemCanceling" OnItemDataBound="lvRooms_ItemDataBound" OnItemDeleting="lvRooms_ItemDeleting"
-            OnItemUpdating="lvRooms_ItemUpdating">
+        <asp:ListView ID="lvRooms" runat="server" OnItemEditing="lvRooms_ItemEditing" OnItemCanceling="lvRooms_ItemCanceling" OnItemDeleted="lvRooms_ItemDeleted">
             <LayoutTemplate>
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
@@ -88,7 +85,7 @@
                         <asp:LinkButton ID="lnkEdit" runat="server" CommandName="Edit">
                             <i class="fa fa-pencil" title="编辑"></i>
                         </asp:LinkButton>
-                        <asp:LinkButton ID="lnkDel" runat="server" CommandName="Delete">
+                        <asp:LinkButton ID="lnkDel" runat="server" CommandName="Deleted">
                             <i class="fa fa-times" title=""></i>
                         </asp:LinkButton>
                     </td>
@@ -97,10 +94,8 @@
             <EditItemTemplate>
                 <td><%# Eval("RoomId") %></td>
                 <td><%# Eval("Num") %></td>
-                <td>
-                    <asp:TextBox ID="txtType" runat="server"></asp:TextBox></td>
-                <td>
-                    <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtType" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtPrice" runat="server"></asp:TextBox></td>
                 <td>
                     <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control">
                         <asp:ListItem Text="正常营业" Value="1">
@@ -111,13 +106,9 @@
                         </asp:ListItem>
                     </asp:DropDownList>
                 </td>
-                <td>
-                    <asp:TextBox ID="txtRemark" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox ID="txtRemark" runat="server"></asp:TextBox></td>
                 <td><%# Eval("UpdateTime") %></td>
                 <td>
-                    <asp:LinkButton runat="server" CommandName="Update">
-                        <i class="fa fa-check"></i>
-                    </asp:LinkButton>
                     <asp:LinkButton runat="server" CommandName="Cancel">
                         <i class="fa fa-undo"></i>
                     </asp:LinkButton>
@@ -162,7 +153,6 @@
                             <label class="col-md-3 text-right">房间状态</label>
                             <div class="col-md-6">
                                 <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control">
-
                                     <asp:ListItem Text="正常营业" Value="1">
                                     </asp:ListItem>
                                     <asp:ListItem Text="装修" Value="2">

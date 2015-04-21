@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
     <ol class="breadcrumb">
-        <li><a href="index.html">订单管理</a></li>
+        <li><a href="#">订单管理</a></li>
         <li class="active">未完成订单</li>
     </ol>
 </asp:Content>
@@ -26,13 +26,13 @@
             <div class="col-sm-2">
                 <asp:TextBox ID="txtMemberName" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-        </div>
-
-        <div class="form-group">
             <label for="<%: txtRoomType.ClientID %>" class="col-sm-1 control-label">房间类型</label>
             <div class="col-sm-2">
                 <asp:TextBox ID="txtRoomType" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
+        </div>
+
+        <div class="form-group">
 
             <label for="<%: txtDateFrom.ClientID %>" class="col-sm-1 control-label">入住日期</label>
             <div class="col-sm-2">
@@ -52,8 +52,11 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-9">
+            <div class="col-lg-2 col-lg-offset-8">
                 <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-block btn-primary" Text="Search" />
+            </div>
+            <div class="col-lg-2">
+                <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-block btn-primary" Text="Add" />
             </div>
         </div>
     </div>
@@ -120,5 +123,5 @@
             </EditItemTemplate>
         </asp:ListView>
     </div>
-
+   
 </asp:Content>

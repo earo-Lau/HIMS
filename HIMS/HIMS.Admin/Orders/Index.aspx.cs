@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HIMS.DAO;
+using HIMS.DAO.OrdersServer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,10 +22,9 @@ namespace HIMS.Admin.Orders
 
         protected void DataBind()
         {
-            lvOrders.DataSource = new dynamic[] { 
-                new { OrderId = "001", AccountId = "001", UserName = "Test", RoomNum = "005", RoomType = "单间", DateFrom = "", DateTo = "", State="" },
-                new { OrderId = "002", AccountId = "003", UserName = "Test", RoomNum = "005", RoomType = "单间", DateFrom = "", DateTo = "", State="" }
-            };
+            var reader = DAOContainer.Singleton.GetReader<Data.OM_OrdersSet>("OrderSet");
+            lvOrders.DataSource = reader.Get();
+
             lvOrders.DataBind();
         }
 

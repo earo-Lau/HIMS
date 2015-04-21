@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a9e274bf649d4d9d95ca665d5e2c3beb" Name="Diagram1">
+        <EntityTypeShape EntityType="HIMS.DataModel.AM_AccountsSet" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HIMS.DataModel.AM_RoleSet" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HIMS.DataModel.OM_OrdersSet" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HIMS.DataModel.OM_StateSet" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HIMS.DataModel.RM_RoomsSet" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HIMS.DataModel.RM_StateSet" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HIMS.DataModel.RS_Order_RoomsSet" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="HIMS.DataModel.FK_AM_AccountsOM_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="HIMS.DataModel.FK_AM_RoleAM_Accounts" ManuallyRouted="false" />
+        <AssociationConnector Association="HIMS.DataModel.FK_OM_OrdersOM_State" ManuallyRouted="false" />
+        <AssociationConnector Association="HIMS.DataModel.FK_OM_OrdersRS_Order_Rooms" ManuallyRouted="false" />
+        <AssociationConnector Association="HIMS.DataModel.FK_RM_RoomsRS_Order_Rooms" ManuallyRouted="false" />
+        <AssociationConnector Association="HIMS.DataModel.FK_RM_StateRM_Rooms" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -33,9 +33,7 @@ namespace HIMS.DAO
 
         protected void InitIoC()
         {
-            ioCContainer = new Dictionary<string, IServer>();
             ioCContainer.Add("OrderSet", new OrdersServer.OrdersDAO());
-            ioCContainer.Add("RoomSet", new RoomServer.RoomsDAO());
 
         }
         #endregion
@@ -43,7 +41,7 @@ namespace HIMS.DAO
         #region Methods
         public IDAOReader<T> GetReader<T>(string key)
         {
-            if(!ioCContainer.ContainsKey(key))
+            if(ioCContainer.ContainsKey(key))
             {
                 throw new KeyNotFoundException("找不到该Server");
             }
@@ -53,7 +51,7 @@ namespace HIMS.DAO
 
         public IDAOWriter<T> GetWriter<T>(string key)
         {
-            if (!ioCContainer.ContainsKey(key))
+            if (ioCContainer.ContainsKey(key))
             {
                 throw new KeyNotFoundException("找不到该Server");
             }
