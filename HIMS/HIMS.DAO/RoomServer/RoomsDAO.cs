@@ -36,7 +36,7 @@ namespace HIMS.DAO.RoomServer
         {
             using (var _db = new Data.Entities())
             {
-                var rooms = _db.RM_RoomsSet.Include("RM_StateSet").Include("RS_Order_RoomsSet")
+                var rooms = _db.RM_RoomsSet.Include("RM_StateSet").Include("RS_Order_RoomsSet").Include("RS_Order_RoomsSet.OM_OrdersSet")
                     .Where(fun);
 
                 return rooms.ToList();
@@ -67,7 +67,6 @@ namespace HIMS.DAO.RoomServer
                 return result;
             }
         }
-
         int IDAOWriter<Data.RM_RoomsSet>.Update(long id, Data.RM_RoomsSet model)
         {
             using (var _db = new Data.Entities())

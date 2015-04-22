@@ -11,13 +11,11 @@
           </Key>
           <Property Name="AccountId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Mobile" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
           <Property Name="JoinTime" Type="datetime" Nullable="false" />
           <Property Name="UpdateTime" Type="datetime" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar(max)" Nullable="false" />
           <Property Name="AM_Role_RoleId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="AM_RoleSet">
@@ -44,6 +42,7 @@
             <PropertyRef Name="SID" />
           </Key>
           <Property Name="SID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="RM_RoomsSet">
           <Key>
@@ -191,13 +190,11 @@
           </Key>
           <Property Name="AccountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <Property Name="JoinTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RoleId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AM_Role_RoleId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="OM_OrdersSet" Relationship="Self.FK_AM_AccountsOM_Orders" FromRole="AM_AccountsSet" ToRole="OM_OrdersSet" />
           <NavigationProperty Name="AM_RoleSet" Relationship="Self.FK_AM_RoleAM_Accounts" FromRole="AM_AccountsSet" ToRole="AM_RoleSet" />
@@ -231,6 +228,7 @@
           </Key>
           <Property Name="SID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="OM_OrdersSet" Relationship="Self.FK_OM_OrdersOM_State" FromRole="OM_StateSet" ToRole="OM_OrdersSet" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RM_RoomsSet">
           <Key>
@@ -384,13 +382,11 @@
               <MappingFragment StoreEntitySet="AM_AccountsSet">
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="JoinTime" ColumnName="JoinTime" />
                 <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="AM_Role_RoleId" ColumnName="AM_Role_RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -419,6 +415,7 @@
           <EntitySetMapping Name="OM_StateSet">
             <EntityTypeMapping TypeName="HIMS.DataModel.OM_StateSet">
               <MappingFragment StoreEntitySet="OM_StateSet">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="SID" ColumnName="SID" />
               </MappingFragment>
             </EntityTypeMapping>

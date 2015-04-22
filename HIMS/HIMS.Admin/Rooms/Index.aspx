@@ -1,13 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="HIMS.Admin.Rooms.Index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <script>
-        $(function () {
-            if ($('#<%=AddModal.ClientID%>').length > 0) {
-                $('#<%=AddModal.ClientID%>').modal();
-            }
-        })
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
     <ol class="breadcrumb">
@@ -29,23 +22,17 @@
 
             <label for="<%: ddlRoomState.ClientID %>" class="col-md-1 control-label">房间状态</label>
             <div class="col-md-3">
-                <asp:DropDownList ID="ddlRoomState" runat="server" CssClass="form-control">
-                    <asp:ListItem Text="所有" Value="-1">
-                    </asp:ListItem>
-                    <asp:ListItem Text="正常营业" Value="1">
-                    </asp:ListItem>
-                    <asp:ListItem Text="装修" Value="2">
-                    </asp:ListItem>
-                    <asp:ListItem Text="拆除" Value="3">
-                    </asp:ListItem>
+                <asp:DropDownList ID="ddlRoomState" runat="server" CssClass="form-control"
+                    DataTextField="Name" DataValueField="SID">
                 </asp:DropDownList>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-lg-2 col-lg-offset-8">
-                <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-block btn-warning" Text="Add"
-                    OnClick="btnAdd_Click" />
+                <button type="button" class="btn btn-block btn-warning" onclick="$('#<%=AddModal.ClientID%>').modal();">
+                    Add
+                </button>
             </div>
             <div class="col-lg-2">
                 <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-block btn-primary" Text="Search" OnClick="btnSearch_Click" />
@@ -102,13 +89,8 @@
                 <td>
                     <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox></td>
                 <td>
-                    <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control">
-                        <asp:ListItem Text="正常营业" Value="1">
-                        </asp:ListItem>
-                        <asp:ListItem Text="装修" Value="2">
-                        </asp:ListItem>
-                        <asp:ListItem Text="拆除" Value="3">
-                        </asp:ListItem>
+                    <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control"
+                        DataTextField="Name" DataValueField="SID">
                     </asp:DropDownList>
                 </td>
                 <td>
@@ -127,7 +109,7 @@
     </div>
 
     <!--Modal-->
-    <div class="modal fade" id="AddModal" runat="server" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" visible="false">
+    <div class="modal fade" id="AddModal" runat="server" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -161,14 +143,8 @@
                         <div class="row form-group">
                             <label class="col-md-3 text-right">房间状态</label>
                             <div class="col-md-6">
-                                <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control">
-
-                                    <asp:ListItem Text="正常营业" Value="1">
-                                    </asp:ListItem>
-                                    <asp:ListItem Text="装修" Value="2">
-                                    </asp:ListItem>
-                                    <asp:ListItem Text="拆除" Value="3">
-                                    </asp:ListItem>
+                                <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control"
+                                    DataTextField="Name" DataValueField="SID">
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -183,7 +159,9 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button CssClass="btn btn-primary" ID="btnSave" Text="Save" runat="server" OnClick="btnSave_Click" />
-                    <asp:Button CssClass="btn btn-danger" ID="btnColse" Text="Close" data-dismiss="modal" runat="server" OnClick="btnColse_Click" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Close
+                    </button>
                 </div>
             </div>
         </div>

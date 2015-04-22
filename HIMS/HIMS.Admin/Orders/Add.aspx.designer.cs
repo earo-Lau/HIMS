@@ -58,13 +58,22 @@ namespace HIMS.Admin.Orders {
         protected global::System.Web.UI.WebControls.ListView lv_Rooms;
         
         /// <summary>
-        /// myModal 控件。
+        /// BookingModal 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl myModal;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BookingModal;
+        
+        /// <summary>
+        /// hidRoomId 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidRoomId;
         
         /// <summary>
         /// txtMemberName 控件。
@@ -83,15 +92,6 @@ namespace HIMS.Admin.Orders {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMobile;
-        
-        /// <summary>
-        /// txtIDCard 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIDCard;
         
         /// <summary>
         /// txtDateEnter 控件。

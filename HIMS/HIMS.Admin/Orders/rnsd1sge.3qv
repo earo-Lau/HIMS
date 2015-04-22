@@ -88,14 +88,14 @@
                         <asp:HiddenField ID="hidRoomId" runat="server" />
                         <div class="row form-group">
                             <label class="col-md-3 text-right">会员姓名</label>
-                            <div class="input-group col-md-6">
+                            <div class="col-md-6">
                             <asp:TextBox ID="txtMemberName" runat="server" CssClass="form-control col-md-8"></asp:TextBox>
                                 </div>
                         </div>
 
                         <div class="row form-group">
                             <label class="col-md-3 text-right">会员手机号码</label>
-                            <div class="input-group col-md-6">
+                            <div class="col-md-6">
                             <asp:TextBox ID="txtMobile" runat="server" CssClass="form-control col-md-8"></asp:TextBox>
                                 </div>
                         </div>
@@ -112,7 +112,7 @@
                         <div class="row form-group">
                             <label class="col-md-3 text-right">离开时间</label>
 
-                            <div class="input-group date datepicker col-md-6">
+                            <div class="input-group date datepicker col-md-12">
                                 <asp:TextBox ID="txtDateLeave" runat="server" CssClass="form-control"></asp:TextBox>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>

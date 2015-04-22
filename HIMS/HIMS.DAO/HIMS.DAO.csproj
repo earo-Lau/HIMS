@@ -54,6 +54,7 @@
     <Compile Include="IDAOReader.cs" />
     <Compile Include="IDAOWriter.cs" />
     <Compile Include="IServer.cs" />
+    <Compile Include="MemberServer\MembreDAO.cs" />
     <Compile Include="OrdersServer\OrdersDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoomServer\RoomsDAO.cs" />

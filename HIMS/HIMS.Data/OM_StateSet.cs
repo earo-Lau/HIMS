@@ -20,6 +20,7 @@ namespace HIMS.Data
         }
     
         public int SID { get; set; }
+        public string Name { get; set; }
     
         public virtual ICollection<OM_OrdersSet> OM_OrdersSet { get; set; }
     }

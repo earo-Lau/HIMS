@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace HIMS.Admin.Orders
+{
+    public partial class Add : System.Web.UI.Page
+    {
+        #region Load
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BindData()
+        {
+            var dateFrom = string.IsNullOrEmpty(txtDateFrom.Text) ? DateTime.Now : DateTime.Parse(txtDateFrom.Text);
+            var dateTo = string.IsNullOrEmpty(txtDateTo.Text) ? DateTime.Now : DateTime.Parse(txtDateTo.Text);
+            if (dateTo < dateFrom)
+            {
+                ClientScript.RegisterClientScriptBlock(Page.GetType(), "dateError", "<script>alert('入住时间不能迟过离开时间')</script>");
+                return;
+            }
+
+            var roomReader = DAO.DAOContainer.Singleton.GetReader<Data.RM_RoomsSet>("RoomsSet");
+            var rList = roomReader.Where(x => x.RM_StateSet.Value.Equals(1)
+                && !x.RS_Order_RoomsSet.Any(or =>
+                    (dateFrom < or.OM_OrdersSet.DateFrom && dateTo > or.OM_OrdersSet.DateTo)
+                    || (dateFrom < or.OM_OrdersSet.DateFrom && dateTo > or.OM_OrdersSet.DateFrom)
+                    || (dateFrom > or.OM_OrdersSet.DateFrom && dateTo > or.OM_OrdersSet.DateTo)
+                    ));
+
+
+        }
+        #endregion
+
+        #region listview
+
+        #endregion
+
+    }
+}

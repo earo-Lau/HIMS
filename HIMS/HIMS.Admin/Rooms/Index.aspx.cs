@@ -10,14 +10,30 @@ namespace HIMS.Admin.Rooms
     public partial class Index : System.Web.UI.Page
     {
         #region Load
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                InitDDL();
                 BindData();
             }
+        }
+
+        protected void InitDDL()
+        {
+            var reader = DAO.DAOContainer.Singleton.GetReader<Data.RM_StateSet>("RoomSet");
+            var stateSource = reader.Get();
+            
+            ddlRoomState.DataSource = stateSource;
+            ddlRoomState.DataBind();
+            ddlRoomState.Items.Insert(0, new ListItem()
+            {
+                Text = "所有",
+                Value = "-1"
+            });
+
+            ddlState.DataSource = stateSource;
+            ddlState.DataBind();
         }
 
         protected void BindData()
@@ -38,11 +54,6 @@ namespace HIMS.Admin.Rooms
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             BindData();
-        }
-
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            this.AddModal.Visible = true;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -68,16 +79,11 @@ namespace HIMS.Admin.Rooms
             }
             else
             {
-                this.AddModal.Visible = false;
+                
             }
             BindData();
         }
 
-        protected void btnColse_Click(object sender, EventArgs e)
-        {
-            this.AddModal.Visible = false;
-            BindData();
-        }
         #endregion
 
         #region ListView
@@ -126,13 +132,20 @@ namespace HIMS.Admin.Rooms
 
                     var room = reader.Single(x => x.RoomId.Equals(roomId));
 
+                    var stateReader = DAO.DAOContainer.Singleton.GetReader<Data.RM_StateSet>("RoomSet");
+                    var stateSource = stateReader.Get();
+
+                    ddlState.DataSource = stateSource;
+                    ddlState.DataBind();
                     ddlState.SelectedValue = room.RM_State_SID.ToString();
+
                     txtType.Text = room.Type;
                     txtPrice.Text = room.Price.ToString();
                     txtRemark.Text = room.Remark;
                 }
             }
         }
+
         protected void lvRooms_ItemUpdating(object sender, ListViewUpdateEventArgs e)
         {
             var roomId = long.Parse(e.Keys["RoomId"].ToString());

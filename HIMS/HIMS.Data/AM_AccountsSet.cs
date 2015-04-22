@@ -21,13 +21,11 @@ namespace HIMS.Data
     
         public long AccountId { get; set; }
         public string Name { get; set; }
-        public string Gender { get; set; }
         public string Mobile { get; set; }
         public string Password { get; set; }
         public bool IsDeleted { get; set; }
         public System.DateTime JoinTime { get; set; }
         public System.DateTime UpdateTime { get; set; }
-        public string RoleId { get; set; }
         public long AM_Role_RoleId { get; set; }
     
         public virtual ICollection<OM_OrdersSet> OM_OrdersSet { get; set; }

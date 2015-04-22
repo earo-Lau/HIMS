@@ -36,7 +36,7 @@ namespace HIMS.DAO
             ioCContainer = new Dictionary<string, IServer>();
             ioCContainer.Add("OrderSet", new OrdersServer.OrdersDAO());
             ioCContainer.Add("RoomSet", new RoomServer.RoomsDAO());
-
+            ioCContainer.Add("AccountSet", new MemberServer.MembreDAO());
         }
         #endregion
 
