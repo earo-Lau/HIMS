@@ -14,6 +14,9 @@ namespace HIMS.Admin.Orders
         {
             if (!IsPostBack)
             {
+                txtDateFrom.Text = DateTime.Now.ToString("MM/dd/yyyy");
+                txtDateTo.Text = DateTime.Now.ToString("MM/dd/yyyy");
+
                 BindData();
             }
 
@@ -49,6 +52,17 @@ namespace HIMS.Admin.Orders
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtMemberName.Text))
+            {
+                ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script>alert('请输入完整的用户名')</script>");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtMobile.Text))
+            {
+                ClientScript.RegisterStartupScript(Page.GetType(), "validation", "<script>alert('请输入完整的手机号码')</script>");
+                return;
+            }
+
             var memberReader = DAO.DAOContainer.Singleton.GetReader<Data.AM_AccountsSet>("AccountSet");
             var member = memberReader.Single(x => x.Mobile.Equals(txtMobile.Text));
             if (member == null)
@@ -101,6 +115,12 @@ namespace HIMS.Admin.Orders
             {
                 var index = e.Item.DisplayIndex;
                 var roomId = lv_Rooms.DataKeys[index].Value.ToString();
+
+                var dateFrom = string.IsNullOrEmpty(txtDateFrom.Text) ? DateTime.Now : DateTime.Parse(txtDateFrom.Text);
+                var dateTo = string.IsNullOrEmpty(txtDateTo.Text) ? DateTime.Now : DateTime.Parse(txtDateTo.Text);
+
+                txtDateEnter.Text = dateFrom.ToString("MM/dd/yyyy");
+                txtDateLeave.Text = dateTo.ToString("MM/dd/yyyy");
 
                 hidRoomId.Value = roomId;
                 ClientScript.RegisterStartupScript(Page.GetType(), "modal", "<script>$('#" + BookingModal.ClientID + "').modal();</script>");

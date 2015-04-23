@@ -18,7 +18,7 @@ namespace HIMS.DAO.OrdersServer
         {
             using (var _db = new Data.Entities())
             {
-                var orders = _db.OM_OrdersSet;
+                var orders = _db.OM_OrdersSet.Include("AM_AccountsSet").Include("OM_StateSet").Include("RS_Order_RoomsSet");
                 return orders.ToList();
             }
         }
@@ -27,7 +27,8 @@ namespace HIMS.DAO.OrdersServer
         {
             using (var _db = new Data.Entities())
             {
-                var order = _db.OM_OrdersSet.Find(key);
+                var order = _db.OM_OrdersSet.Include("AM_AccountsSet").Include("OM_StateSet").Include("RS_Order_RoomsSet")
+                    .SingleOrDefault(x => x.OrderId.Equals(key));
                 return order;
             }
         }
@@ -36,8 +37,9 @@ namespace HIMS.DAO.OrdersServer
         {
             using (var _db = new Data.Entities())
             {
-                var orders = _db.OM_OrdersSet.Where(fun);
-                return orders;
+                var orders = _db.OM_OrdersSet.Include("AM_AccountsSet").Include("OM_StateSet").Include("RS_Order_RoomsSet")
+                    .Where(fun);
+                return orders.ToList();
             }
         }
 
@@ -45,7 +47,7 @@ namespace HIMS.DAO.OrdersServer
         {
             using (var _db = new Data.Entities())
             {
-                var orders = _db.OM_OrdersSet.SingleOrDefault(fun);
+                var orders = _db.OM_OrdersSet.Include("AM_AccountsSet").Include("OM_StateSet").Include("RS_Order_RoomsSet").SingleOrDefault(fun);
                 return orders;
             }
         }

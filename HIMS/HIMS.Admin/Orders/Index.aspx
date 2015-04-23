@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="HIMS.Admin.Orders.Index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <% if (state == 3)
+       { %>
+    <style>
+        table tr th:last-child, table tr td:last-child {
+            display: none;
+        }
+    </style>
+    <%} %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
@@ -35,7 +43,7 @@
         <div class="form-group">
 
             <label for="<%: txtDateFrom.ClientID %>" class="col-sm-1 control-label">入住日期</label>
-            <div class="col-sm-2">
+            <div class="col-sm-5">
                 <div class="input-group date datepicker col-sm-12">
                     <asp:TextBox ID="txtDateFrom" runat="server" CssClass="form-control"></asp:TextBox>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -43,7 +51,7 @@
             </div>
 
             <label for="<%: txtDateTo.ClientID %>" class="col-sm-1 control-label">离开日期</label>
-            <div class="col-sm-2">
+            <div class="col-sm-5">
                 <div class="input-group date datepicker col-sm-12">
                     <asp:TextBox ID="txtDateTo" runat="server" CssClass="form-control"></asp:TextBox>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -52,17 +60,14 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-8">
-                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-block btn-primary" Text="Search" />
-            </div>
-            <div class="col-lg-2">
-                <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-block btn-primary" Text="Add" />
+            <div class="col-lg-2 pull-right">
+                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-block btn-primary" Text="Search" OnClick="btnSearch_Click" />
             </div>
         </div>
     </div>
 
     <div class="table-responsive">
-        <asp:ListView ID="lvOrders" runat="server" OnItemEditing="lvOrders_ItemEditing" OnItemCanceling="lvOrders_ItemCanceling" OnItemDeleted="lvOrders_ItemDeleted">
+        <asp:ListView ID="lvOrders" runat="server" OnItemDeleting="lvOrders_ItemDeleting" DataKeyNames="OrderId">
             <LayoutTemplate>
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
@@ -70,6 +75,7 @@
                             <th>ID</th>
                             <th>会员ID</th>
                             <th>会员名</th>
+                            <th>手机号</th>
                             <th>房间号</th>
                             <th>房间类型</th>
                             <th>入住时间</th>
@@ -87,41 +93,24 @@
                 <tr>
                     <td><%# Eval("OrderId") %></td>
                     <td><%# Eval("AccountId") %></td>
-                    <td><%# Eval("UserName") %></td>
+                    <td><%# Eval("MemberName") %></td>
+                    <td><%# Eval("MemberMobile") %></td>
                     <td><%# Eval("RoomNum") %></td>
                     <td><%# Eval("RoomType") %></td>
                     <td><%# Eval("DateFrom") %></td>
                     <td><%# Eval("DateTo") %></td>
                     <td><%# Eval("State") %></td>
                     <td>
-                        <asp:LinkButton ID="lnkEdit" runat="server" CommandName="Edit">
+                        <%--<asp:LinkButton ID="lnkEdit" runat="server" CommandName="Edit">
                             <i class="fa fa-pencil" title="编辑"></i>
-                        </asp:LinkButton>
-                        <asp:LinkButton ID="lnkDel" runat="server" CommandName="Deleted">
+                        </asp:LinkButton>--%>
+                        <asp:LinkButton ID="lnkDel" runat="server" CommandName="Delete">
                             <i class="fa fa-times" title=""></i>
                         </asp:LinkButton>
                     </td>
                 </tr>
             </ItemTemplate>
-            <EditItemTemplate>
-                <td><%# Eval("OrderId") %></td>
-                <td><%# Eval("AccountId") %></td>
-                <td><%# Eval("UserName") %></td>
-                <td><%# Eval("RoomNum") %></td>
-                <td><%# Eval("RoomType") %></td>
-                <td><%# Eval("DateFrom") %></td>
-                <td><%# Eval("DateTo") %></td>
-                <td>
-                    <asp:DropDownList ID="ddlState" runat="server" CssClass="form-control">
-                    </asp:DropDownList>
-                </td>
-                <td>
-                    <asp:LinkButton runat="server" CommandName="Cancel">
-                        <i class="fa fa-undo"></i>
-                    </asp:LinkButton>
-                </td>
-            </EditItemTemplate>
         </asp:ListView>
     </div>
-   
+
 </asp:Content>

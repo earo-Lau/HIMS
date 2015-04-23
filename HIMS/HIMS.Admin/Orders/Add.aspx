@@ -103,8 +103,8 @@
                         <div class="row form-group">
                             <label class="col-md-3 text-right">入住时间</label>
 
-                            <div class="input-group date datepicker col-md-6">
-                                <asp:TextBox ID="txtDateEnter" runat="server" CssClass="form-control"></asp:TextBox>
+                            <div class="input-group col-md-6">
+                                <asp:TextBox ID="txtDateEnter" runat="server" ReadOnly="true" CssClass="form-control disabled"></asp:TextBox>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                         </div>
@@ -112,8 +112,8 @@
                         <div class="row form-group">
                             <label class="col-md-3 text-right">离开时间</label>
 
-                            <div class="input-group date datepicker col-md-6">
-                                <asp:TextBox ID="txtDateLeave" runat="server" CssClass="form-control"></asp:TextBox>
+                            <div class="input-group col-md-6">
+                                <asp:TextBox ID="txtDateLeave" runat="server" ReadOnly="true" CssClass="form-control"></asp:TextBox>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                         </div>

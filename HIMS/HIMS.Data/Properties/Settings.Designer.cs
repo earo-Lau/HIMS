@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HIMS.Model.Properties {
+namespace HIMS.Data.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,8 +26,9 @@ namespace HIMS.Model.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\Data\\HIMS.Data.mdf;I" +
-            "ntegrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=G:\\Git\\HIMS\\HIMS\\HIMS.Admin\\App_Data" +
+            "\\HIMS.Data.mdf;Integrated Security=True;MultipleActiveResultSets=True;Applicatio" +
+            "n Name=EntityFramework")]
         public string HIMS_DataConnectionString {
             get {
                 return ((string)(this["HIMS_DataConnectionString"]));
